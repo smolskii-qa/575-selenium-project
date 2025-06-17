@@ -17,4 +17,6 @@ ENV/
 .env
 .env.*
 
+sandbox/
+
 

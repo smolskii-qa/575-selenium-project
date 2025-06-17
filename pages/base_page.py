@@ -15,3 +15,7 @@ class BasePage():
         except NoSuchElementException:
             return False
         return True
+
+    def does_url_have_substring(self, what):
+        return what in self.browser.current_url
+
