@@ -17,9 +17,13 @@ class ProductPage(BasePage):
 
     def get_target_message(self, target):
         messages = self.get_all_messages()
-        message = next((m.text for m in messages if target in m.text), None)
+        message = next((m for m in messages if target in m.text), None)
         assert message, 'Can\'t find target message'
         return message
+
+    def get_target_message_strong_value(self, target):
+        message = self.get_target_message(target)
+        return message.find_element(*ProductPageLocators.REL_MESSAGE_STRONG_TEXT).text
 
     def get_product_name(self):
         return self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
@@ -29,10 +33,10 @@ class ProductPage(BasePage):
 
     def should_be_correct_product_name_message(self):
         product_name = self.get_product_name()
-        message = self.get_target_message(MESSAGE_SUCCESS_ADD)
-        assert product_name in message, 'Wrong name in message about adding product to cart'
+        message_value = self.get_target_message_strong_value(MESSAGE_SUCCESS_ADD)
+        assert message_value == product_name, 'Wrong name in message about adding product to cart'
 
     def should_be_correct_cost_message(self):
         product_cost = self.get_product_price()
-        message = self.get_target_message(MESSAGE_BASKET_PRICE)
-        assert product_cost in message, 'Wrong cost in message about basket'
+        message_value = self.get_target_message_strong_value(MESSAGE_BASKET_PRICE)
+        assert message_value == product_cost, 'Wrong cost in message about basket'
