@@ -21,12 +21,18 @@ class ProductPage(BasePage):
         assert message, 'Can\'t find target message'
         return message
 
+    def get_product_name(self):
+        return self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
+
+    def get_product_price(self):
+        return self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
+
     def should_be_correct_product_name_message(self):
-        product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
+        product_name = self.get_product_name()
         message = self.get_target_message(MESSAGE_SUCCESS_ADD)
         assert product_name in message, 'Wrong name in message about adding product to cart'
 
     def should_be_correct_cost_message(self):
-        product_cost = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
+        product_cost = self.get_product_price()
         message = self.get_target_message(MESSAGE_BASKET_PRICE)
         assert product_cost in message, 'Wrong cost in message about basket'
