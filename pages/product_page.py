@@ -1,6 +1,9 @@
 from .base_page import BasePage
 from .locators import ProductPageLocators
 
+MESSAGE_SUCCESS_ADD = 'has been added to your basket'
+MESSAGE_BASKET_PRICE = 'Your basket total is now'
+
 
 class ProductPage(BasePage):
     def add_to_basket(self):
@@ -20,10 +23,10 @@ class ProductPage(BasePage):
 
     def should_be_correct_product_name_message(self):
         product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
-        message = self.get_target_message('has been added to your basket')
+        message = self.get_target_message(MESSAGE_SUCCESS_ADD)
         assert product_name in message, 'Wrong name in message about adding product to cart'
 
     def should_be_correct_cost_message(self):
         product_cost = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
-        message = self.get_target_message('Your basket total is now')
+        message = self.get_target_message(MESSAGE_BASKET_PRICE)
         assert product_cost in message, 'Wrong cost in message about basket'
