@@ -29,6 +29,12 @@ class ProductPage(BasePage):
         assert message_value == product_cost, 'Wrong cost in message about basket'
 
     def should_not_be_success_message(self):
-        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_SUCCESS)
+        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_SUCCESS), \
+        'Success message is presented, but should not be'
+
+    def should_be_success_message_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.MESSAGE_SUCCESS), \
+        'Message is not disappeared, but should be'
+
 
 
