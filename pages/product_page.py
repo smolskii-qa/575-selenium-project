@@ -7,23 +7,8 @@ MESSAGE_BASKET_PRICE = 'Your basket total is now'
 
 class ProductPage(BasePage):
     def add_to_basket(self):
-        add_to_basket_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
+        add_to_basket_button = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
         add_to_basket_button.click()
-
-    def get_all_messages(self):
-        messages = self.browser.find_elements(*ProductPageLocators.ALL_MESSAGES)
-        assert messages, 'Can\'t find messages'
-        return messages
-
-    def get_target_message(self, target):
-        messages = self.get_all_messages()
-        message = next((m for m in messages if target in m.text), None)
-        assert message, 'Can\'t find target message'
-        return message
-
-    def get_target_message_strong_value(self, target):
-        message = self.get_target_message(target)
-        return message.find_element(*ProductPageLocators.REL_MESSAGE_STRONG_TEXT).text
 
     def get_product_name(self):
         return self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
@@ -31,12 +16,19 @@ class ProductPage(BasePage):
     def get_product_price(self):
         return self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
 
-    def should_be_correct_product_name_message(self):
+    def should_be_correct_product_name_in_success_message(self):
         product_name = self.get_product_name()
-        message_value = self.get_target_message_strong_value(MESSAGE_SUCCESS_ADD)
+        message = self.browser.find_element(*ProductPageLocators.MESSAGE_SUCCESS)
+        message_value = message.find_element(*ProductPageLocators.MESSAGE_STRONG_TEXT_RELATIVE).text
         assert message_value == product_name, 'Wrong name in message about adding product to cart'
 
-    def should_be_correct_cost_message(self):
+    def should_be_correct_amount_in_basket_amount_message(self):
         product_cost = self.get_product_price()
-        message_value = self.get_target_message_strong_value(MESSAGE_BASKET_PRICE)
+        message = self.browser.find_element(*ProductPageLocators.MESSAGE_BASKET_AMOUNT)
+        message_value = message.find_element(*ProductPageLocators.MESSAGE_STRONG_TEXT_RELATIVE).text
         assert message_value == product_cost, 'Wrong cost in message about basket'
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_SUCCESS)
+
+
