@@ -5,7 +5,7 @@ class BasketPage(BasePage):
     MESSAGE_EMPTY_BASKET = 'Your basket is empty.'
 
     def should_not_basket_have_items(self):
-        pass
+        assert self.is_not_element_present(*BasketPageLocators.BASKET_ITEMS), 'Basket has items, but shouldn\'t'
 
     def should_be_message_empty_basket(self):
         expected_message = self.MESSAGE_EMPTY_BASKET

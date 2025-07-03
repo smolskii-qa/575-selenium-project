@@ -7,7 +7,7 @@ class BasePageLocators():
     BUTTON_VIEW_BASKET = (By.XPATH, '//a[@class="btn btn-default"][contains(., "View basket")]')
 
 class BasketPageLocators():
-    BASKET_ITEMS = (By.CSS_SELECTOR, '#basket-items')
+    BASKET_ITEMS = (By.CSS_SELECTOR, '.basket-items')
     BASKET_CONTENT = (By.CSS_SELECTOR, '#content_inner')
 
 

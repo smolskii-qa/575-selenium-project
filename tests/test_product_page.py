@@ -1,6 +1,7 @@
 import time
 import pytest
 
+from pages.basket_page import BasketPage
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
 
@@ -70,4 +71,8 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.should_be_success_message_disappeared()
 
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
-    pass
+    page = ProductPage(browser, link_without_quiz)
+    page.open()
+    page.go_to_basket_page()
+    page = BasketPage(browser, browser.current_url)
+    page.should_not_basket_have_items()
