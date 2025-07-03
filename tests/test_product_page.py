@@ -68,3 +68,6 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.open()
     page.add_to_basket()
     page.should_be_success_message_disappeared()
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    pass

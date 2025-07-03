@@ -1,8 +1,16 @@
 from selenium.webdriver.common.by import By
 
+
 class BasePageLocators():
     LINK_LOGIN = (By.CSS_SELECTOR, '#login_link')
     LINK_LOGIN_INVALID = (By.CSS_SELECTOR, '#login_link_inc')
+    BUTTON_VIEW_BASKET = (By.XPATH, '//a[@class="btn btn-default"][contains(., "View basket")]')
+
+class BasketPageLocators():
+    BASKET_ITEMS = (By.CSS_SELECTOR, '#basket-items')
+    BASKET_CONTENT = (By.CSS_SELECTOR, '#content_inner')
+
+
 
 class MainPageLocators():
     LINK_LOGIN = (By.CSS_SELECTOR, '#login_link')
@@ -27,5 +35,3 @@ class ProductPageLocators():
     )
     # Относительный локатор. Используется только для поиска внутри сообщений
     MESSAGE_STRONG_TEXT_RELATIVE = (By.TAG_NAME, 'strong')
-
-

@@ -15,6 +15,10 @@ class BasePage():
     def does_url_have_substring(self, what):
         return what in self.browser.current_url
 
+    def go_to_basket_page(self):
+        basket_button = self.browser.find_element(*BasePageLocators.BUTTON_VIEW_BASKET)
+        basket_button.click()
+
     def go_to_login_page(self):
         login_link = self.browser.find_element(*BasePageLocators.LINK_LOGIN)
         login_link.click()
