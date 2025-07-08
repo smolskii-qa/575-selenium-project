@@ -14,7 +14,7 @@ class BasketPageLocators():
 
 
 class MainPageLocators():
-    LINK_LOGIN = (By.CSS_SELECTOR, '#login_link')
+    pass
 
 
 class LoginPageLocators():
