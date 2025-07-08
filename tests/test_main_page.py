@@ -5,6 +5,7 @@ from pages.main_page import MainPage
 
 link = 'http://selenium1py.pythonanywhere.com/'
 
+
 @pytest.mark.login_guest
 class TestLoginFromMainPage():
     def test_guest_can_go_to_login_page(self, browser):
@@ -21,5 +22,3 @@ class TestLoginFromMainPage():
         page.go_to_basket_page()
         page = BasketPage(browser, browser.current_url)
         page.should_be_message_empty_basket()
-
-
