@@ -5,7 +5,7 @@ from pages.basket_page import BasketPage
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
 
-# link_with_quiz_in_alert = 'https://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear'
+link_with_quiz_in_alert = 'https://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear'
 link = 'http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/'
 
 

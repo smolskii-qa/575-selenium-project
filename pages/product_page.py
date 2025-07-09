@@ -1,8 +1,8 @@
 from .base_page import BasePage
 from .locators import ProductPageLocators
 
-MESSAGE_SUCCESS_ADD = 'has been added to your basket'
-MESSAGE_BASKET_PRICE = 'Your basket total is now'
+# MESSAGE_SUCCESS_ADD = 'has been added to your basket'
+# MESSAGE_BASKET_PRICE = 'Your basket total is now'
 
 
 class ProductPage(BasePage):
