@@ -18,20 +18,20 @@ class ProductPage(BasePage):
 
     def should_be_correct_product_name_in_success_message(self):
         product_name = self.get_product_name()
-        message = self.browser.find_element(*ProductPageLocators.MESSAGE_SUCCESS)
+        message = self.browser.find_element(*ProductPageLocators.get_message_success_locator(self.language))
         message_value = message.find_element(*ProductPageLocators.MESSAGE_STRONG_TEXT_RELATIVE).text
         assert message_value == product_name, 'Wrong name in message about adding product to cart'
 
     def should_be_correct_amount_in_basket_amount_message(self):
         product_cost = self.get_product_price()
-        message = self.browser.find_element(*ProductPageLocators.MESSAGE_BASKET_AMOUNT)
+        message = self.browser.find_element(*ProductPageLocators.get_message_basket_amount_locator(self.language))
         message_value = message.find_element(*ProductPageLocators.MESSAGE_STRONG_TEXT_RELATIVE).text
         assert message_value == product_cost, 'Wrong cost in message about basket'
 
     def should_not_be_success_message(self):
-        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_SUCCESS), \
+        assert self.is_not_element_present(*ProductPageLocators.get_message_success_locator(self.language)), \
             'Success message is presented, but should not be'
 
     def should_be_success_message_disappeared(self):
-        assert self.is_disappeared(*ProductPageLocators.MESSAGE_SUCCESS), \
+        assert self.is_disappeared(*ProductPageLocators.get_message_success_locator(self.language)), \
             'Message is not disappeared, but should be'
