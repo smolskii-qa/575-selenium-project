@@ -7,23 +7,21 @@ class ProductPage(BasePage):
         add_to_basket_button = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
         add_to_basket_button.click()
 
-    def get_product_name(self):
+    def get_product_name(self) -> str:
         return self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
 
-    def get_product_price(self):
+    def get_product_price(self) -> str:
         return self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
 
-    def should_be_correct_product_name_in_success_message(self):
-        product_name = self.get_product_name()
+    def should_be_correct_product_name_in_success_message(self, expected_name):
         message = self.browser.find_element(*ProductPageLocators.get_message_success_locator(self.language))
         message_value = message.find_element(*ProductPageLocators.MESSAGE_STRONG_TEXT_RELATIVE).text
-        assert message_value == product_name, 'Wrong name in message about adding product to cart'
+        assert message_value == expected_name, 'Wrong name in message about adding product to cart'
 
-    def should_be_correct_amount_in_basket_amount_message(self):
-        product_cost = self.get_product_price()
+    def should_be_correct_amount_in_basket_amount_message(self, expected_amount):
         message = self.browser.find_element(*ProductPageLocators.get_message_basket_amount_locator(self.language))
         message_value = message.find_element(*ProductPageLocators.MESSAGE_STRONG_TEXT_RELATIVE).text
-        assert message_value == product_cost, 'Wrong cost in message about basket'
+        assert message_value == expected_amount, 'Wrong cost in message about basket'
 
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.get_message_success_locator(self.language)), \
