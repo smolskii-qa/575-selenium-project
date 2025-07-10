@@ -39,9 +39,11 @@ class TestUserAddToBasketFromProductPage():
 def test_guest_can_add_product_to_basket(browser):
     page = ProductPage(browser, link)
     page.open()
+    product_name = page.get_product_name()
+    product_price = page.get_product_price()
     page.add_to_basket()
-    page.should_be_correct_product_name_in_success_message()
-    page.should_be_correct_amount_in_basket_amount_message()
+    page.should_be_correct_product_name_in_success_message(product_name)
+    page.should_be_correct_amount_in_basket_amount_message(product_price)
 
 
 @pytest.mark.need_review
